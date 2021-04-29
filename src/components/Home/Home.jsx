@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import loader from "../../loader.svg";
 import { setFormSubmission } from "../../actions";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Home() {
   const [showModal, setShowModal] = React.useState(false);
@@ -39,6 +41,7 @@ function Home() {
         setCodeSnippets([...codeSnippets, formData]);
         dispatch(setFormSubmission(false));
         setShowModal(false);
+        notify("Snippet Added");
       });
   };
   const copyText = () => {
@@ -54,6 +57,32 @@ function Home() {
     document.body.removeChild(element);
     console.log(text);
   };
+  const svgTick = () => {
+    return (
+      <div className="">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="text-green-600 w-5 pt-1"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z" />
+        </svg>
+      </div>
+    );
+  };
+  const CloseButton = ({ closeToast }) => (
+    <button className="inline-flex items-center  focus:outline-none rounded-full p-2 hover:cursor-pointer">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="fill-current w-4 h-4 pt-1"
+        viewBox="0 0 24 24"
+      >
+        <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
+      </svg>
+    </button>
+  );
+  const notify = (msg) =>
+    toast.success(msg);
 
   return (
     <>
@@ -93,9 +122,9 @@ function Home() {
                   <h3 className="sub-heading text-md capitalize">
                     {snippet.subHeading}
                   </h3>
-                  <div className="notes capitalize italic text-yellow-400">
+                  <div className="notes capitalize italic text-yellow-400 mt-2 mb-4">
                     {" "}
-                    {snippet.notes ? `Note: ${snippet.notes}` : ""}
+                    {snippet.notes ? `Note :  ${snippet.notes}` : ""}
                   </div>
                   {snippet.snippet && (
                     <div className="code-card relative">
@@ -153,7 +182,7 @@ function Home() {
           </div> */}
           {showModal ? (
             <>
-              <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+              <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none modals-body">
                 <div className="relative w-auto my-6 mx-auto max-w-3xl">
                   <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                     <div className="relative p-6 flex-auto">
@@ -180,11 +209,45 @@ function Home() {
                 </div>
                 {formData.isSubmitting && <img className="vc" src={loader} />}
               </div>
-              <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+              <div
+                className="opacity-25 fixed inset-0 z-40 bg-black"
+                onClick={(e) => {
+                  console.log(e, "e");
+                  setShowModal(false);
+                }}
+              ></div>
             </>
           ) : null}
         </div>
       </div>
+
+      {/* <div className="toastr">
+        <div className="space-x-2 bg-green-50 p-4 rounded flex items-center text-green-600 mb-4 shadow-lg mx-auto max-w-2xl">
+          <div className="">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="fill-current w-5 pt-1"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z" />
+            </svg>
+          </div>
+          <h3 className="text-green-800 tracking-wider flex-1">
+            Successfull operation
+          </h3>
+          <button className="inline-flex items-center hover:bg-green-100 border border-green-50 hover:border-green-300 hover:text-green-900 focus:outline-none rounded-full p-2 hover:cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="fill-current w-4 h-4 pt-1"
+              viewBox="0 0 24 24"
+            >
+              <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
+            </svg>
+          </button>
+        </div>
+      </div> */}
+
+      <ToastContainer closeButton={CloseButton} />
     </>
   );
 }
