@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/code-memoirs-rc-frontend/static/css/main.cd2899ad.chunk.css",
-    "main.js": "/code-memoirs-rc-frontend/static/js/main.d389aa6e.chunk.js",
-    "main.js.map": "/code-memoirs-rc-frontend/static/js/main.d389aa6e.chunk.js.map",
+    "main.css": "/code-memoirs-rc-frontend/static/css/main.eee28b22.chunk.css",
+    "main.js": "/code-memoirs-rc-frontend/static/js/main.b2e62709.chunk.js",
+    "main.js.map": "/code-memoirs-rc-frontend/static/js/main.b2e62709.chunk.js.map",
     "runtime-main.js": "/code-memoirs-rc-frontend/static/js/runtime-main.e9abb7f2.js",
     "runtime-main.js.map": "/code-memoirs-rc-frontend/static/js/runtime-main.e9abb7f2.js.map",
     "static/css/2.04404071.chunk.css": "/code-memoirs-rc-frontend/static/css/2.04404071.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.83326e9c.chunk.js.map": "/code-memoirs-rc-frontend/static/js/3.83326e9c.chunk.js.map",
     "index.html": "/code-memoirs-rc-frontend/index.html",
     "static/css/2.04404071.chunk.css.map": "/code-memoirs-rc-frontend/static/css/2.04404071.chunk.css.map",
-    "static/css/main.cd2899ad.chunk.css.map": "/code-memoirs-rc-frontend/static/css/main.cd2899ad.chunk.css.map",
+    "static/css/main.eee28b22.chunk.css.map": "/code-memoirs-rc-frontend/static/css/main.eee28b22.chunk.css.map",
     "static/js/2.25c1e4df.chunk.js.LICENSE.txt": "/code-memoirs-rc-frontend/static/js/2.25c1e4df.chunk.js.LICENSE.txt",
     "static/media/delete.ddf1c186.svg": "/code-memoirs-rc-frontend/static/media/delete.ddf1c186.svg",
     "static/media/loader.bf86bf49.svg": "/code-memoirs-rc-frontend/static/media/loader.bf86bf49.svg",
@@ -23,7 +23,7 @@
     "static/js/runtime-main.e9abb7f2.js",
     "static/css/2.04404071.chunk.css",
     "static/js/2.25c1e4df.chunk.js",
-    "static/css/main.cd2899ad.chunk.css",
-    "static/js/main.d389aa6e.chunk.js"
+    "static/css/main.eee28b22.chunk.css",
+    "static/js/main.b2e62709.chunk.js"
   ]
 }
