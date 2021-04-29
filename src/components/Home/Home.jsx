@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Highlight from "react-highlight";
 import plusBtn from "../../assets/plsu.svg";
+import deleteIcon from "../../assets/delete.svg";
 import Form from "../Form/Form";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
@@ -12,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 function Home() {
   const [showModal, setShowModal] = React.useState(false);
   const [codeSnippets, setCodeSnippets] = useState([]);
+  const [tags, setTags] = useState([]);
   const bgColors = [
     "bg-pink-100",
     "bg-red-100",
@@ -26,11 +28,11 @@ function Home() {
   useEffect(() => {
     axios.get("https://code-memoirs-backend.herokuapp.com/get").then((res) => {
       setCodeSnippets(res.data.snippets);
+      setTags(res.data.tags);
     });
   }, []);
 
   const formData = useSelector((formData) => formData);
-  console.log(formData, "formData");
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
@@ -41,11 +43,16 @@ function Home() {
         setCodeSnippets([...codeSnippets, formData]);
         dispatch(setFormSubmission(false));
         setShowModal(false);
+        setTags((prevTags) => {
+          formData._id = res.data.snippetId;
+          const tagsTemp = prevTags.concat(formData.tags);
+          return Array.from(new Set(tagsTemp));
+        });
         notify("Snippet Added");
       });
   };
-  const copyText = () => {
-    const text = document.querySelector(".code-snippet").innerText;
+  const copyText = (index) => {
+    const text = document.querySelectorAll(".code-snippet")[index].innerText;
 
     var element = document.createElement("textarea");
     document.body.appendChild(element);
@@ -55,35 +62,17 @@ function Home() {
     document.execCommand("copy");
 
     document.body.removeChild(element);
-    console.log(text);
   };
-  const svgTick = () => {
-    return (
-      <div className="">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="text-green-600 w-5 pt-1"
-          viewBox="0 0 24 24"
-        >
-          <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z" />
-        </svg>
-      </div>
-    );
-  };
-  const CloseButton = ({ closeToast }) => (
-    <button className="inline-flex items-center  focus:outline-none rounded-full p-2 hover:cursor-pointer">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="fill-current w-4 h-4 pt-1"
-        viewBox="0 0 24 24"
-      >
-        <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
-      </svg>
-    </button>
-  );
-  const notify = (msg) =>
-    toast.success(msg);
+  const notify = (msg) => toast.success(msg);
 
+  const handleDeletion = (index) => {
+    const id = codeSnippets[index]._id;
+    axios
+      .delete(`https://code-memoirs-backend.herokuapp.com/delSnip/${id}`)
+      .then((res) => {
+        setCodeSnippets(codeSnippets.filter((snippet) => snippet._id != id));
+      });
+  };
   return (
     <>
       <div className="add-snippet-btn">
@@ -96,19 +85,23 @@ function Home() {
       </div>
       <div className="w-screen grid grid-cols-12">
         <div className="lhs-navigationasdasfas col-span-3 p-5">
-          {!!formData.tags.length &&
-            formData.tags.map((tag, index) => {
-              return (
-                <span
-                  className={`inline-flex m-2 ${getRandomColors(
-                    bgColors
-                  )} text-gray-500 text-xs rounded-full h-6 px-3 justify-center items-center`}
-                  key={`tag_${index}`}
-                >
-                  #{tag}
-                </span>
-              );
-            })}
+          <div className="fixed tags-width">
+            <div className="flex flex-wrap">
+              {!!tags.length &&
+                tags.map((tag, index) => {
+                  return (
+                    <span
+                      className={`text-lowecase inline-flex m-2 ${getRandomColors(
+                        bgColors
+                      )} text-gray-500 text-xs rounded-full h-6 px-3 justify-center items-center`}
+                      key={`tag_${index}`}
+                    >
+                      #{tag}
+                    </span>
+                  );
+                })}
+            </div>
+          </div>
         </div>
 
         <div className="col-span-6">
@@ -146,7 +139,7 @@ function Home() {
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 448 512"
                           className="absolute cursor-pointer"
-                          onClick={copyText}
+                          onClick={() => copyText(index)}
                         >
                           <g>
                             <path
@@ -160,6 +153,12 @@ function Home() {
                           </g>
                         </svg>
                       )}
+                      <img
+                        src={deleteIcon}
+                        alt="delete-icon"
+                        className="deleteIcon"
+                        onClick={() => handleDeletion(index)}
+                      />
                     </div>
                   )}
                   <div className="images">
@@ -212,7 +211,6 @@ function Home() {
               <div
                 className="opacity-25 fixed inset-0 z-40 bg-black"
                 onClick={(e) => {
-                  console.log(e, "e");
                   setShowModal(false);
                 }}
               ></div>
@@ -247,7 +245,7 @@ function Home() {
         </div>
       </div> */}
 
-      <ToastContainer closeButton={CloseButton} />
+      <ToastContainer />
     </>
   );
 }

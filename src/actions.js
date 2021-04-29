@@ -40,7 +40,6 @@ export function setImages(value) {
 }
 
 export function setFormSubmission(value) {
-  console.log("got it", value);
   return {
     type: SET_SUBMISSION,
     isSubmitting: value,
