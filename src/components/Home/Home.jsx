@@ -91,7 +91,7 @@ function Home() {
                 tags.map((tag, index) => {
                   return (
                     <span
-                      className={`text-lowercase inline-flex m-2 ${getRandomColors(
+                      className={`lowercase inline-flex m-2 ${getRandomColors(
                         bgColors
                       )} text-gray-500 text-xs rounded-full h-6 px-3 justify-center items-center`}
                       key={`tag_${index}`}
