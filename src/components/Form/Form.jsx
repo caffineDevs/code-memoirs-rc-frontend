@@ -46,7 +46,7 @@ function Form(props) {
                       type="text"
                       onChange={(e) => dispatch(setHeading(e.target.value))}
                       placeholder="Heading"
-                      className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                      className="w-full text-gray-500 px-3 py-2 placeholder-gray-300 border border-gray-500 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     />
                   </div>
                   <div className="mb-6">
@@ -54,7 +54,7 @@ function Form(props) {
                       type="text"
                       onChange={(e) => dispatch(setSubHeading(e.target.value))}
                       placeholder="Sub Heading"
-                      className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                      className="w-full text-gray-500 px-3 py-2 placeholder-gray-300 border border-gray-500 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     />
                   </div>
                 </div>
@@ -64,7 +64,7 @@ function Form(props) {
                       type="text"
                       onChange={(e) => dispatch(setNotes(e.target.value))}
                       placeholder="Note"
-                      className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                      className="w-full text-gray-500 px-3 py-2 placeholder-gray-300 border border-gray-500 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     />
                   </div>
                   <div className="mb-6">
@@ -72,7 +72,7 @@ function Form(props) {
                       type="text"
                       onChange={(e) => dispatch(setTags(e.target.value))}
                       placeholder="use commas to separate tags"
-                      className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                      className="w-full text-gray-500 px-3 py-2 placeholder-gray-300 border border-gray-500 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     />
                   </div>
                 </div>
@@ -80,7 +80,7 @@ function Form(props) {
                   <textarea
                     rows={3}
                     placeholder="Description"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                    className="w-full text-gray-500 px-3 py-2 placeholder-gray-300 border border-gray-500 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     value={codeSnippet}
                     onChange={handleCodeSnippetChange}
                   />
@@ -91,7 +91,7 @@ function Form(props) {
                     rows={8}
                     onChange={(e) => dispatch(setSnippet(e.target.value))}
                     placeholder="Happy coding !"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                    className="w-full text-gray-500 px-3 py-2 placeholder-gray-300 border border-gray-500 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                   />
                 </div>
 
@@ -106,7 +106,7 @@ function Form(props) {
                               className="focus:outline-none"
                             >
                               <input {...getInputProps()} accept="image/*" />
-                              <p className="border p-5 rounded cursor-pointer text-gray-300 w-52 text-center">
+                              <p className="border p-5 rounded cursor-pointer text-gray-300 w-52 text-center border-gray-500">
                                 Drag 'n' drop some files here, or click to
                                 select files
                               </p>
